@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="wrapper">
+      <form id="qrForm">
+         <div class="input_box">
+            <input type="text" id="textbox" minlength="3" size="15" required placeholder="Enter text here">
+         </div>
+         <div class="qr-btn-container">
+            <img id="qr" src="" alt="" width="200" height="200">
+            <button type="button" class="btn" onclick="handleButtonClick()">Generate QR</button>
+         </div>
+      </form>
+   </div>
+   <script>
+      document.getElementById('qrForm').addEventListener('submit', function(event) {
+         event.preventDefault();
+      });
+
+      function handleButtonClick() {
+         var inputText = document.getElementById("textbox").value;
+         var newSrc = "https://api.qrserver.com/v1/create-qr-code/?data=" + encodeURIComponent(inputText) + "&size=220x220";
+         document.getElementById("qr").src = newSrc;
+         document.getElementById("qr").style.display = "flex";
+      }
+   </script>
+</body>
+</html>
